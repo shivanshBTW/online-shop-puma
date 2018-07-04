@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+
+    <script src="./js/utils.js"></script>
+    <script src="./js/product/product.js"></script>
+    <script src="./js/user/user.js"></script>
+    <script src="./js/admin/admin.js"></script>
+    <script src="./js/product/productDB.js"></script>
+    <script src="./js/user/userDB.js"></script>
+    <script src="./js/admin/adminDB.js"></script>
+    <script src="./js/user/userController.js"></script>
+    <script src="./js/product/productController.js"></script>
+    <script src="./js/admin/adminController.js"></script>
+    <script src="./js/controller.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="https://d21kp9itql721v.cloudfront.net/cdn/834392/skin/frontend/rwd/default/images/media/logo2.png" alt="Puma India"
+            class="large">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <button type="button" class=" cart btn btn-outline-primary" data-toggle="modal" data-target="#loginModal">
+                <i class="fas fa-user "></i>
+            </button>
+            <button type="button" class=" cart btn btn-outline-primary" data-toggle="modal" data-target="#createAccountModal">
+                <i class="fas fa-user-plus"></i>
+            </button>
+
+            <button class="btn btn-outline-primary my-2 my-sm-0 cart">
+                <i class="fas fa-shopping-cart"></i>
+            </button>
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
+                                </div>
+                                <!-- <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div> -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="adminLoginButton" class="btn btn-danger">Admin Login</button>
+                            <button type="submit" id="loginButton" class="btn btn-primary">Login</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Create Account</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="usernameCreateAccount">Username</label>
+                                    <input type="text" class="form-control" id="usernameCreateAccount" aria-describedby="emailHelp" placeholder="Enter username">
+                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordCreateAccount">Password</label>
+                                    <input type="password" class="form-control" id="passwordCreateAccount" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" class="form-control" id="age" placeholder="Type your age (in years)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Type your address">
+                                </div>
+                                <div class="form-group form-inline">
+
+                                    <input type="text" class="form-control" id="pincode" placeholder="pincode">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your phone number">
+                                </div>
+                                <!-- <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div> -->
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="createAccountButton" class="btn btn-primary">Create Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+    <div class="container">
+        <!--Carousel Wrapper-->
+
+
+        <div class="jumbotron banner">
+            <h1 id="bannerh1" class="display-4">SNOOZE, YOU LOSE.</h1>
+            <h6 class=" bannerh6 lead">*ADDITIONAL 10% OFF </h6>
+            <h6 class=" bannerh6 lead">WHEN YOU BUY 3 OR MORE ITEMS</h6>
+            <h6 class=" bannerh6 lead">COUPON CODE: EXTRA10</h6>
+            <!-- <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            <!-- <img src="https://d21kp9itql721v.cloudfront.net/cdn/762218/media/wysiwyg/18AW_BTL_ECOM_MF_Mid-Season-Sale_FullBleedHero_Desktop_1440x500_2.jpg" alt=""> -->
+        </div>
+
+
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+
+                    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <!-- <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul> -->
+                    <div class="card-body">
+                        <!-- <a href="#" class="card-link">Card link</a> -->
+                        <a href="#" class="card-link btn btn-primary">Another link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+
+                    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <!-- <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul> -->
+                    <div class="card-body">
+                        <!-- <a href="#" class="card-link">Card link</a> -->
+                        <a href="#" class="card-link btn btn-primary">Another link</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+
+                    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <!-- <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Cras justo odio</li>
+                                <li class="list-group-item">Dapibus ac facilisis in</li>
+                                <li class="list-group-item">Vestibulum at eros</li>
+                            </ul> -->
+                    <div class="card-body">
+                        <!-- <a href="#" class="card-link">Card link</a> -->
+                        <a href="#" class="card-link btn btn-primary">Another link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

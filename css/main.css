@@ -1,0 +1,19 @@
+.cart{
+    margin-left: 5px;
+}
+
+
+.banner{
+  background-image: url('https://d21kp9itql721v.cloudfront.net/cdn/762218/media/wysiwyg/18AW_BTL_ECOM_MF_Mid-Season-Sale_FullBleedHero_Desktop_1440x500_2.jpg')!important;
+  /* background-attachment: fixed; */
+  background-size: 100%;
+  margin-top: 10px 
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}

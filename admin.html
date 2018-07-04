@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+
+    <script src="./js/utils.js"></script>
+    <!-- <script src="./js/product/product.js"></script> -->
+    <!-- <script src="./js/user/user.js"></script> -->
+    <script src="./js/admin/admin.js"></script>
+    <!-- <script src="./js/product/productDB.js"></script> -->
+    <!-- <script src="./js/user/userDB.js"></script> -->
+    <script src="./js/admin/adminDB.js"></script>
+    <!-- <script src="./js/user/userController.js"></script> -->
+    <!-- <script src="./js/product/productController.js"></script> -->
+    <script src="./js/admin/adminController.js"></script>
+    <!-- <script src="./js/controller.js"></script> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="https://d21kp9itql721v.cloudfront.net/cdn/834392/skin/frontend/rwd/default/images/media/logo2.png" alt="Puma India"
+            class="large">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li> -->
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+
+        <select name="cars" class="custom-select form-control" id="admin-toggle">
+            <option value="manageProducts">Manage Products</option>
+            <option value="topHeader" selected>Header</option>
+            <option value="carouselItem">Edit Carousel Items</option>
+            <option value="featuredCards">Featured Cards</option>
+        </select>
+
+        <div id="admin-options">
+            <div id="manageProducts" class="admin-operation">
+                <form>
+                    <div class="form-group">
+                        <label for="idLabel">ID is :
+                            <span id="itemID"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Product Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" placeholder="Enter Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color
+                            <span id="color"></span>
+                        </label>
+                        <input type="color" class="form-control" id="color" placeholder="#fff">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description
+                            <span id="description"></span>
+                        </label>
+                        <textarea name="" id="description" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">URL</label>
+                        <input type="text" class="form-control" id="image" placeholder="www.example.com">
+                    </div>
+                </form>
+                <button class="btn btn-primary" id="addBtn">Add</button>
+                <br>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Price</td>
+                            <td>Color</td>
+                            <td>Description</td>
+                            <td>Image</td>
+                            <td>Delete Button</td>
+                        </tr>
+                    </thead>
+                    <tbody id="itemTable"></tbody>
+                </table>
+            </div>
+            <div id="topHeader" class="admin-operation">
+                <form>
+                    <div class="form-group">
+                        <label for="bannerh1Input">Banner Heading :</label>
+                        <input type="text" name="" id="bannerh1Input">
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerh61Input">Banner Heading :</label>
+                        <input type="text" name="" id="bannerh61Input">
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerh62Input">Banner Heading :</label>
+                        <input type="text" name="" id="bannerh62Input">
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerh63Input">Banner Heading :</label>
+                        <input type="text" name="" id="bannerh63Input">
+                    </div>
+
+                </form>
+                <h3>PREVIEW:</h3>
+                <div class="jumbotron banner">
+                    <h1 id="bannerh1" class="display-4">SNOOZE, YOU LOSE.</h1>
+                    <h6 id="bannerh61" class="lead">*ADDITIONAL 10% OFF </h6>
+                    <h6 id="bannerh62" class="lead">WHEN YOU BUY 3 OR MORE ITEMS</h6>
+                    <h6 id="bannerh63" class="lead">COUPON CODE: EXTRA10</h6>
+                    <!-- <hr class="my-4">
+                            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    <!-- <img src="https://d21kp9itql721v.cloudfront.net/cdn/762218/media/wysiwyg/18AW_BTL_ECOM_MF_Mid-Season-Sale_FullBleedHero_Desktop_1440x500_2.jpg" alt=""> -->
+                </div>
+            </div>
+            <div id="carouselItem" class="admin-operation">gg2</div>
+            <div id="featuredCards" class="admin-operation">gg3</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
