@@ -8,9 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
+
+
+    <!-- <script src="./js/carousel.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-
     <script src="./js/utils.js"></script>
     <script src="./js/product/product.js"></script>
     <script src="./js/user/user.js"></script>
@@ -20,7 +28,7 @@
     <script src="./js/admin/adminDB.js"></script>
     <script src="./js/user/userController.js"></script>
     <script src="./js/product/productController.js"></script>
-    <script src="./js/admin/adminController.js"></script>
+    <!-- <script src="./js/admin/adminController.js"></script> -->
     <script src="./js/controller.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
@@ -184,16 +192,46 @@
         <!--Carousel Wrapper-->
 
 
-        <div class="jumbotron banner">
+        <div id='banner' class="jumbotron banner">
             <h1 id="bannerh1" class="display-4">SNOOZE, YOU LOSE.</h1>
-            <h6 class=" bannerh6 lead">*ADDITIONAL 10% OFF </h6>
-            <h6 class=" bannerh6 lead">WHEN YOU BUY 3 OR MORE ITEMS</h6>
-            <h6 class=" bannerh6 lead">COUPON CODE: EXTRA10</h6>
+            <h6 id="bannerh61" class="lead">*ADDITIONAL 10% OFF </h6>
+            <h6 id="bannerh62" class="lead">WHEN YOU BUY 3 OR MORE ITEMS</h6>
+            <h6 id="bannerh63" class="lead">COUPON CODE: EXTRA10</h6>
             <!-- <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
+                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> -->
             <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
             <!-- <img src="https://d21kp9itql721v.cloudfront.net/cdn/762218/media/wysiwyg/18AW_BTL_ECOM_MF_Mid-Season-Sale_FullBleedHero_Desktop_1440x500_2.jpg" alt=""> -->
         </div>
+
+
+
+
+
+        <div class="container-fluid">
+            <!-- <h1 class="text-center mb-3">Bootstrap Multi-Card Carousel</h1> -->
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner row w-100 mx-auto" id="carousel-card-container">
+
+                    
+
+
+                </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+
+
+
+
+
 
 
         <br>
@@ -261,17 +299,13 @@
         </div>
     </div>
 
-    
+
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

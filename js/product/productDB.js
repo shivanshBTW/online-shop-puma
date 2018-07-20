@@ -1,10 +1,10 @@
 var productOperations = {
-    searchAll(loginID) {
+    searchAll() {
         var pr = new Promise((resolve, reject) => {
-            var data = firebase.database().ref(loginID + '/products/');
+            var data = firebase.database().ref('products/');
             data.on('value', snapshot => {
                 var object = snapshot.val();
-                // console.log(object);
+                // console.dlog(object);
                 resolve(object);
             })
         })

@@ -3,12 +3,16 @@ var counter;
 var id;
 var isRunFlag;
 var loginID;
+var carouselActiveFlag;
 
 function init() {
 
     bindEvents();
     localStorage.loginFlag = false;
     localStorage.adminLoginFlag = false;
+    carouselActiveFlag = false;
+    printBanner();
+    createCarousel();
     // console.log('gg')
     // console.log(document.querySelector('#admin-toggle'));
 }
@@ -19,7 +23,7 @@ function bindEvents() {
     document.querySelector('#createAccountButton').addEventListener('click', addUser);
     document.querySelector('#loginButton').addEventListener('click', loginUser);
     userBindEvents();
-    adminInit();
+    // adminInit();
 }
 
 function loginAdmin() {
@@ -126,4 +130,64 @@ function deleteEntry() {
     // console.log('id is ', id);
     // isRunFlag=false;
     printObject();
+}
+function printBanner(){
+    var pr = adminOperations.getBanner();
+    pr.then(bannerObject=>{
+        // bannerObject = data;
+        
+        document.querySelector('#bannerh1').innerText = bannerObject['h1'];
+        document.querySelector('#bannerh61').innerText = bannerObject['h61'];
+        document.querySelector('#bannerh62').innerText = bannerObject['h62'];
+        document.querySelector('#bannerh63').innerText = bannerObject['h63'];
+        var bgImage = bannerObject['backgroundImage']
+        document.querySelector('.banner').setAttribute('style',"background-image : url("+bannerObject['backgroundImage']+")!important;");
+
+    })
+}
+
+
+function createCard(productObject) {
+    var div1 = `<div class="card">
+    <h5 class="card-header">Featured</h5>
+    <div style="height: 250px">
+        <img class="card-img-top" src="${productObject['image']}" alt="Card image cap">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">${productObject['name']}</h5>
+        <p class="card-text">${productObject['description']}</p>
+        <p>₹${productObject['price']}</p>
+
+    </div>    
+    <div class="card-body">
+        <a href="#" class="card-link btn btn-primary">Buy Now</a>
+    </div>
+</div>`
+    return div1;
+}
+
+function createCarousel() {
+    var mainContainer = document.querySelector('#carousel-card-container');
+    var pr1 = adminOperations.getCarouselItems();
+    pr1.then(data => {
+        for (let key in data) {
+            let productPr = productOperations.searchByID(key);
+
+            if (productPr) {
+                productPr.then(product => {
+                    let card = createCard(product);
+                    let containerDiv = document.createElement('div');
+                    containerDiv.className = 'carousel-item col-md-4 ';
+                    if (!carouselActiveFlag) {
+                        containerDiv.className += 'active';
+                        carouselActiveFlag = true;
+                    }
+                    containerDiv.innerHTML = card;
+                    // console.log(containerDiv)
+                    mainContainer.appendChild(containerDiv);
+                })
+            }
+
+        }
+    })
 }

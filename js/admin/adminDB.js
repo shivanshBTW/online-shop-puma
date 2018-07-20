@@ -1,13 +1,14 @@
 var adminOperations = {
     addProducts(productObject) {
-        firebase.database().ref('products/' + productObject.id).set(productObject);
+        // console.log(productObject)
+        firebase.database().ref('products/' + productObject.pid).set(productObject);
         // console.log(productObject);
     },
     // sort(loginID, id) {
     //     var prodRef = firebase.database().ref('products/');
     //     // prodRef.orderByChild
     // },
-    delete(loginID, id) {
+    delete(id) {
         // var pr = new Promise((resolve, reject) => {
         var data = firebase.database().ref('products/' + id);
         data.on('value', snapshot => {
@@ -51,7 +52,7 @@ var adminOperations = {
                 if (data.password == pwd) {
                     localStorage.adminLoginFlag = true;
                     alert(' admin logged in..... redirecting');
-                    location.href='../admin.html';
+                    location.href = '../admin.html';
                 } else {
                     alert('Wrong username or password ...')
                 }
@@ -62,5 +63,40 @@ var adminOperations = {
             console.log('err is ', err);
         })
 
+    },
+    setBanner(bannerObject) {
+        // console.log(productObject)
+        firebase.database().ref('featuredItems/banner').set(bannerObject);
+    },
+    getBanner() {
+        var pr = new Promise((resolve, reject) => {
+            var data = firebase.database().ref('featuredItems/banner');
+            data.on('value', snapshot => {
+                var object = snapshot.val();
+                // console.log(object);
+                resolve(object);
+            })
+        })
+        return pr;
+    },
+    addCarouselItem(id){
+        firebase.database().ref('featuredItems/carousel/'+id).set(id);
+    },
+    getCarouselItems(){
+        var pr = new Promise((resolve, reject) => {
+            var data = firebase.database().ref('featuredItems/carousel/');
+            data.on('value', snapshot => {
+                var object = snapshot.val();
+                // console.log(object);
+                resolve(object);
+            })
+        })
+        return pr;
+    },
+    deleteCarouselItem(id){
+        var data = firebase.database().ref('featuredItems/carousel/' + id);
+        data.on('value', snapshot => {
+            data.remove();
+        })
     }
 }
